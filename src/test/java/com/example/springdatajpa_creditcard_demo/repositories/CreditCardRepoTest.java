@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.springdatajpa_creditcard_demo.model.CreditCard;
+import com.example.springdatajpa_creditcard_demo.services.EncryptionService;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -17,6 +18,9 @@ public class CreditCardRepoTest {
 
     @Autowired
     CreditCardRepo creditCardRepo;
+    
+    @Autowired
+    EncryptionService encryptionService;
 
     @Test
     void test_saveAndStore_creditcard() {
@@ -28,10 +32,13 @@ public class CreditCardRepoTest {
 
         var savedCC = creditCardRepo.saveAndFlush(creditcard);
 
-        System.out.println("Getting CreditCard from database: ");
+        System.out.println("Getting CreditCard from database: " + creditcard.getCreditCardNumber());
+        System.out.println("CC at rest");
+        System.out.println("CC encrypted: " + encryptionService.encrypt(CREDIT_CARD));
 
         var fetchedCC = creditCardRepo.findById(savedCC.getId()).get();
 
         assertThat(savedCC.getCreditCardNumber()).isEqualTo(fetchedCC.getCreditCardNumber());
     }
 }
+ 
