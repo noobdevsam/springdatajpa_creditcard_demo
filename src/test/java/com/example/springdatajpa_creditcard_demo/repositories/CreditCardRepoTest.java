@@ -38,7 +38,7 @@ public class CreditCardRepoTest {
 
         var savedCC = creditCardRepo.saveAndFlush(creditcard);
 
-        System.out.println("Getting CreditCard from database: " + creditcard.getCreditCardNumber());
+        System.out.println("Getting CreditCard from database: " + savedCC.getCreditCardNumber());
         System.out.println("CC at rest");
         System.out.println("CC encrypted: " + encryptionService.encrypt(CREDIT_CARD));
 
