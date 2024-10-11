@@ -1,5 +1,7 @@
 package com.example.springdatajpa_creditcard_demo.model;
 
+import com.example.springdatajpa_creditcard_demo.interceptors.EncryptedString;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +14,7 @@ public class CreditCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @EncryptedString
     private String creditCardNumber;
 
     private String cvv;
