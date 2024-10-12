@@ -9,9 +9,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Component;
 
-import com.example.springdatajpa_creditcard_demo.listeners.PostLoadListener;
-import com.example.springdatajpa_creditcard_demo.listeners.PreInsertListener;
-import com.example.springdatajpa_creditcard_demo.listeners.PreUpdateListener;
+import com.example.springdatajpa_creditcard_demo.listeners.*;
 
 @Component
 public class ListenerRegistration implements BeanPostProcessor{
@@ -27,12 +25,14 @@ public class ListenerRegistration implements BeanPostProcessor{
         this.postLoadListener = postLoadListener;
     }
 
+    @SuppressWarnings("null")
     @Override
     @Nullable
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
     }
 
+    @SuppressWarnings("null")
     @Override
     @Nullable
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
