@@ -29,14 +29,7 @@ public class ListenerRegistration implements BeanPostProcessor{
     @Override
     @Nullable
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
-    }
-
-    @SuppressWarnings("null")
-    @Override
-    @Nullable
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-
+        
         if(bean instanceof LocalContainerEntityManagerFactoryBean) {
             var lemf = (LocalContainerEntityManagerFactoryBean) bean;
             var sessionFactory = (SessionFactoryImpl) lemf.getNativeEntityManagerFactory();
@@ -49,6 +42,13 @@ public class ListenerRegistration implements BeanPostProcessor{
         }
 
         return bean;
+    }
+
+    @SuppressWarnings("null")
+    @Override
+    @Nullable
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        return BeanPostProcessor.super.postProcessBeforeInitialization(bean, beanName);
     }
     
 }
