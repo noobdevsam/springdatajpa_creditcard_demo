@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 import com.example.springdatajpa_creditcard_demo.services.EncryptionService;
 
 @SuppressWarnings("deprecation")
-@Component
+//@Component
 public class EncryptionInterceptor extends EmptyInterceptor{
 
     private final EncryptionService encryptionService;
