@@ -1,29 +1,29 @@
 package com.example.springdatajpa_creditcard_demo.config;
 
-import org.hibernate.event.service.spi.EventListenerRegistry;
-import org.hibernate.event.spi.EventType;
-import org.hibernate.internal.SessionFactoryImpl;
+// import org.hibernate.event.service.spi.EventListenerRegistry;
+// import org.hibernate.event.spi.EventType;
+// import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.lang.Nullable;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.stereotype.Component;
+// import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+// import org.springframework.stereotype.Component;
 
-import com.example.springdatajpa_creditcard_demo.listeners.*;
+// import com.example.springdatajpa_creditcard_demo.listeners.*;
 
 //@Component
 public class ListenerRegistration implements BeanPostProcessor{
 
-    private final PreInsertListener preInsertListener;
-    private final PreUpdateListener preUpdateListener;
-    private final PostLoadListener postLoadListener;
+    // private final PreInsertListener preInsertListener;
+    // private final PreUpdateListener preUpdateListener;
+    // private final PostLoadListener postLoadListener;
 
-    public ListenerRegistration(PreInsertListener preInsertListener, PreUpdateListener preUpdateListener,
-            PostLoadListener postLoadListener) {
-        this.preInsertListener = preInsertListener;
-        this.preUpdateListener = preUpdateListener;
-        this.postLoadListener = postLoadListener;
-    }
+    // public ListenerRegistration(PreInsertListener preInsertListener, PreUpdateListener preUpdateListener,
+    //         PostLoadListener postLoadListener) {
+    //     this.preInsertListener = preInsertListener;
+    //     this.preUpdateListener = preUpdateListener;
+    //     this.postLoadListener = postLoadListener;
+    // }
 
     @SuppressWarnings("null")
     @Override
