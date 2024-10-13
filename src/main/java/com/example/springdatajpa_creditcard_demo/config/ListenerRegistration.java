@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.springdatajpa_creditcard_demo.listeners.*;
 
-@Component
+//@Component
 public class ListenerRegistration implements BeanPostProcessor{
 
     private final PreInsertListener preInsertListener;
@@ -30,16 +30,16 @@ public class ListenerRegistration implements BeanPostProcessor{
     @Nullable
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         
-        if(bean instanceof LocalContainerEntityManagerFactoryBean) {
-            var lemf = (LocalContainerEntityManagerFactoryBean) bean;
-            var sessionFactory = (SessionFactoryImpl) lemf.getNativeEntityManagerFactory();
-            var registry = sessionFactory.getServiceRegistry()
-                                .getService(EventListenerRegistry.class);
+        // if(bean instanceof LocalContainerEntityManagerFactoryBean) {
+        //     var lemf = (LocalContainerEntityManagerFactoryBean) bean;
+        //     var sessionFactory = (SessionFactoryImpl) lemf.getNativeEntityManagerFactory();
+        //     var registry = sessionFactory.getServiceRegistry()
+        //                         .getService(EventListenerRegistry.class);
 
-            registry.appendListeners(EventType.PRE_INSERT, preInsertListener);
-            registry.appendListeners(EventType.PRE_UPDATE, preUpdateListener);
-            registry.appendListeners(EventType.POST_LOAD, postLoadListener);
-        }
+        //     registry.appendListeners(EventType.PRE_INSERT, preInsertListener);
+        //     registry.appendListeners(EventType.PRE_UPDATE, preUpdateListener);
+        //     registry.appendListeners(EventType.POST_LOAD, postLoadListener);
+        // }
 
         return bean;
     }
