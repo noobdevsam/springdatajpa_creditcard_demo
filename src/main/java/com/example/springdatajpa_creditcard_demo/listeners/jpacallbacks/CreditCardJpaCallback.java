@@ -1,6 +1,8 @@
 package com.example.springdatajpa_creditcard_demo.listeners.jpacallbacks;
 
+import com.example.springdatajpa_creditcard_demo.config.SpringContextHelper;
 import com.example.springdatajpa_creditcard_demo.model.CreditCard;
+import com.example.springdatajpa_creditcard_demo.services.EncryptionService;
 
 import jakarta.persistence.PostLoad;
 import jakarta.persistence.PostPersist;
@@ -14,6 +16,11 @@ public class CreditCardJpaCallback {
     @PreUpdate
     public void beforeInsertOrUpdate(CreditCard creditCard) {
         System.out.println("before update was called....");
+        creditCard.setCreditCardNumber(
+            getEncryptionService().encrypt(
+                creditCard.getCreditCardNumber()
+            )
+        );
     }
 
     @PostPersist
@@ -21,5 +28,15 @@ public class CreditCardJpaCallback {
     @PostUpdate
     public void postLoad(CreditCard creditCard) {
         System.out.println("Post load was called....");
+        creditCard.setCreditCardNumber(
+            getEncryptionService().decrypt(
+                creditCard.getCreditCardNumber()
+            )
+        );
+    }
+
+    // accessing spring context for accessing a specific part of the context
+    private EncryptionService getEncryptionService() {
+        return SpringContextHelper.getApplicationContext().getBean(EncryptionService.class);
     }
 }
